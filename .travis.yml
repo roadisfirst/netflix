@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- 14.17.1
+install: npm install
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  app: new-netflix
+  api_key:
+    secure: mqvjEcUy12LLWRcsdtLEo54pRCmGNeM08hSmbcELHY4AKpY3EoEyDQYwxbC7mpFq/D9SlS76ir1nVTRiOWFn8vl/DNskOdveFxDlqi6TziU3Sd42j5LuBVCqTlgs9ZptSu/fnQh5XxQDKHiZ4j7kL3Ab7JQPw97LbQEx3GsFJxHmAbD1A8VEWPTXnt9IczLBP3x1xgaUNGrxKSh8y8ij5AmrP8d4yZ/T31YZ0lRRDFXMA/RWQNwsgQEnnYuentcpRLxErYgZ8A14uLkBYLWZxeRFbhPACfv6jYIXEoyaMX7MuyCGOw57LQN+7LEFjMMq2btkvE8V/HjCC6w52zCaHxgIHDsfHMh+CUgS0ExcznSZYeCIsHnfg7fS0FQ8v/Os7U+fuAscrq+t42bXs5a2GGa/B+2EoJybc8lCILjpW9PWSvL/Qg1TVw9CmbWdVH8sv+IGEKzg4FMP09rLlNQJOcEWl97AxqMMQ4Xo57KwCqRiuO/0rbgIzOFfUDbxO408wehLVFCVzxiMKQbv6yBx8gxhDbCyun6bJbKaSrsL+/Fb+3SZNdArWthlfhvLi/40uKgyDIFzwWFK51btnmcuPxemWx0lVtYz0+oYPJV90L5wRfg+NjQi8rwYrX/OFyjYFKeQs2ayMUZ1HgQLJG18QAddrOqMeWQA5flJZfEV2lk=
