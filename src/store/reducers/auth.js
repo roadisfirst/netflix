@@ -6,7 +6,7 @@ token: null,
 userId: null,
 error: null,
 loading: false,
-authRedirectPath: '/checkout'
+authRedirectPath: '/profile'
 };
 
 const authStart = (state, action) => {

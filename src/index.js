@@ -23,11 +23,9 @@ const store = createStore(rootReducer, composeEnhancers(
 
 const app = (
   <Provider store={store}>
-    <BrowserRouter>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </BrowserRouter>
   </Provider>
 );
 
