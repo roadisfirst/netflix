@@ -7,17 +7,12 @@
   margin: 10px;
   box-sizing: border-box;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 0px;
 }
 
 .ShowCard:hover,
 .ShowCard:active {
   background-color: #C0DDF5;
-}
-
-.Author {
-  margin: 16px 0;
-  color: #ccc;
 }
 
 .Info img {

@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import { connect, useSelector, useDispatch} from 'react-redux';
+import { connect } from 'react-redux';
 
 import ShowCard from '../../components/ShowCard/ShowCard';
 import Spinner from '../../components/UI/Spinner/Spinner';
 // import Search from '../../components/Dashboard/Dashboard';
-import axios from '../../axios-shows';
 import * as actions from '../../store/actions/index';
-import { render } from 'react-dom';
 
 import classes from './Shows.module.css';
 
