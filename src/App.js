@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
 import { Login } from './pages/Login';
 import Shows from './pages/Shows/Shows';
+import SingleShow from './pages/Shows/SingleShow/SingleShow';
 import Auth from './pages/Auth/Auth';
 import Logout from './pages/Auth/Logout/Logout';
 import { connect } from 'react-redux';
@@ -27,7 +28,8 @@ const App = props => {
           <Route path={'/login'} component={Login} />
           <Route path={'/auth'} component={Auth} />
           <Route path={'/logout'} component={Logout} />
-          <Route path={'/shows'} component={Shows} />
+          <Route path={'/shows'} exact component={Shows} />
+          <Route path={'/shows/:id'} exact component={SingleShow} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

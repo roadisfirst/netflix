@@ -7,3 +7,6 @@ export {
 export {
   fetchShows
 } from './shows';
+export {
+  fetchShow
+} from './show';
