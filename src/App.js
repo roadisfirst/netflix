@@ -1,17 +1,48 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Home } from './pages/Home';
 import { Login } from './pages/Login';
+import Auth from './pages/Auth/Auth';
+import Logout from './pages/Auth/Logout/Logout';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="container">
+const App = props => {
+
+  let routes = (
       <BrowserRouter>
         <Switch>
-          <Route component={Login} />
+          <Route path={'/'} exact component={Home} />
+          <Route path={'/auth'} component={Auth} />
+          <Redirect to="/" />
         </Switch>
       </BrowserRouter>
+  );
+
+  if (props.isAuthenticated) {
+    routes = (
+      <BrowserRouter>
+        <Switch>
+          <Route path={'/'} exact component={Home} />
+          <Route path={'/login'} component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path={'/auth'} component={Auth} />
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+
+  return (
+    <div className="container">
+      {routes}
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
+
+export default connect(mapStateToProps)(App);
