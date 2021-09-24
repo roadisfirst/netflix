@@ -4,3 +4,7 @@ export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 
 export const SET_AUTH_REDIRECT_PATH = 'SET_AUTH_REDIRECT_PATH';
+
+export const GET_SHOWS = 'GET_SHOWS';
+export const GET_SHOWS_SUCCESS = 'GET_SHOWS_SUCCESS';
+export const GET_SHOWS_FAIL = 'GET_SHOWS_FAIL';

@@ -6,7 +6,7 @@ token: null,
 userId: null,
 error: null,
 loading: false,
-authRedirectPath: '/profile'
+authRedirectPath: '/shows'
 };
 
 const authStart = (state, action) => {
