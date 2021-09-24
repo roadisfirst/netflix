@@ -18,8 +18,7 @@
     "web-vitals": "^1.0.1"
   },
   "optionalDependencies": {
-    "fsevents": "2.3.2",
-    "fsevents": "1.2.13"
+    "fsevents": "2.3.2"
  },
   "scripts": {
     "start": "node server.js",
