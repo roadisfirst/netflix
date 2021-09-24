@@ -17,10 +17,6 @@
     "redux-thunk": "^2.3.0",
     "web-vitals": "^1.0.1"
   },
-  "optionalDependencies": {
-    "fsevents": "<2.3",
-    "fsevents": "<1.2"
- },
   "scripts": {
     "start": "node server.js",
     "startReact": "react-scripts start",
