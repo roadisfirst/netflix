@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - 14.17.1
-install: npm install
+install: npm install --no-optional
 branches:
   only:
   - master
