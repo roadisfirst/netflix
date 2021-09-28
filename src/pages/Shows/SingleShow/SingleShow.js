@@ -22,19 +22,22 @@ const SingleShow = ({
     const renderShow = () => {
         if (loading.show) return <Spinner />
         if (hasErrors.show) return <p>Unable to display show.</p>
+        const genres = show.genres?.map(elem => <span key={elem}>{elem} </span>);
 
         return (
             <div className={classes.SingleShow}>
-                <div className={classes.About}>
-                  <img src={show.image?.original} alt={show.name}/>
-                    <h2 className={classes.ShowTitle}>{show.name}</h2>
-                    <div className={classes.AboutWrapper}>
-                        <div className={classes.AboutItem}>
-                            <p><b>Summary: </b>{show.summary}</p>
-                            <p><b>Genres: </b>{show.genres}</p>
-                            <p><b>Rating: </b>{show.rating.average}</p>
-                            <p><b>Language: </b>{show.language}</p>
-                        </div>
+                <div className={classes.SingleShowImageWrapper}>
+                    <img className={classes.SingleShowImg} src={show.image?.medium} alt={show.name}/>
+                </div>
+                <div className={classes.SingleShowAboutWrapper}>
+                    <h2 className={classes.SingleShowTitle}>{show.name}</h2>
+                    <div className={classes.SingleShowAboutItem}>
+                        <p><b>Summary: </b>{show.summary}</p>
+                        <p><b>Show type: </b>{show.type}</p>
+                        <p><b>Genres: </b>{genres}</p>
+                        <p><b>Rating: </b>{show.rating?.average}</p>
+                        <p><b>Language: </b>{show.language}</p>
+                        <p><b>Status: </b>{show.status}</p>
                     </div>
                 </div>
             </div>
@@ -42,9 +45,9 @@ const SingleShow = ({
     };
 
     return (
-        <div className="SingleShow">
+        <>
             {renderShow()}
-        </div>
+        </>
     );
 }
 

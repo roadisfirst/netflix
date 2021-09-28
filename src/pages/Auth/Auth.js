@@ -46,7 +46,7 @@ const Auth = props => {
     if (props.authRedirectPath !== '/') {
       props.onSetAuthRedirectPath();
     }
-  }); //}, []);
+  }, []); // []
 
   const inputChangedHandler = (event, controlName) => {
     const updatedControls = updateObject(authForm, {
@@ -63,8 +63,15 @@ const Auth = props => {
   };
 
   const submitHandler = event => {
+    const userData = {
+      email: authForm.email.value,
+      favouriteList: [],
+      friendsList: [],
+    }
     event.preventDefault();
-    props.onAuth(authForm.email.value, authForm.password.value, isSignup);
+    props.onAuth(authForm.email.value, authForm.password.value, isSignup, userData);
+
+    
   };
 
   const switchAuthModeHandler = () => {
@@ -126,6 +133,7 @@ const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
+    token: state.auth.token,
     isAuthenticated: state.auth.token !== null,
     authRedirectPath: state.auth.authRedirectPath
   };
@@ -133,9 +141,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password, isSignup) =>
-      dispatch(actions.auth(email, password, isSignup)),
-      onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/shows'))
+    onAuth: (email, password, isSignup, userData) =>
+      dispatch(actions.auth(email, password, isSignup, userData)),
+    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/shows')),
   };
 };
 

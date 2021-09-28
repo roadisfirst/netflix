@@ -2,9 +2,23 @@
   width: 50%;
 }
 
+.ShowsHeader {
+  text-align: center;
+}
+
 .CardsContainer {
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: row; */
   width: 100%;
+  justify-content: center;
+}
+
+.CardsContainer a {
+  text-decoration: none;
+}
+
+.ShowsSearchbar {
+  margin: 20px;
+  padding: 10px;
+  width: 600px;
 }

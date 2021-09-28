@@ -1,0 +1,23 @@
+.SingleShow {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+}
+
+.SingleShowImageWrapper {
+  /* width: 30%; */
+}
+
+.SingleShowImg {
+  width: auto;
+  height: 100%;
+}
+
+.SingleShowAboutWrapper {
+  padding: 0 20px;
+}
+
+.SingleShowTitle {
+  text-align: center;
+}
+

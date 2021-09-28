@@ -40,7 +40,7 @@ export const checkAuthTimeout = (expirationTime) => {
     };
 };
 
-export const auth = (email, password, isSignup) => {
+export const auth = (email, password, isSignup, data) => {
     return dispatch => {
         dispatch(authStart());
         const authData = {
@@ -60,6 +60,15 @@ export const auth = (email, password, isSignup) => {
                 localStorage.setItem('userId', response.data.localId);
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 dispatch(checkAuthTimeout(response.data.expiresIn));
+                if (isSignup) {
+                    console.log('on new user')
+                    const dataWithId = {...data, userId: response.data.localId}
+                    console.log('SAVING block', dataWithId)
+                    dispatch(saveUser(dataWithId, response.data.idToken));
+                } else {
+                    dispatch(fetchUser(response.data.localId))
+                }
+                
             })
             .catch(err => {
                 console.log(err.response);
@@ -91,4 +100,85 @@ export const authCheckState = () => {
             }
         }
     }
-} 
+}
+
+export const saveUserSuccess = ( userData ) => {
+    return {
+        type: actionTypes.SAVE_USER_SUCCESS,
+        // userId: id,
+        userData: userData
+    };
+  };
+  
+  export const saveUserFail = ( error ) => {
+    return {
+        type: actionTypes.SAVE_USER_FAIL,
+        error: error
+    };
+  }
+  
+  export const saveUserStart = () => {
+    return {
+        type: actionTypes.SAVE_USER_START
+    };
+  };
+  
+  export const saveUser = ( userData, token) => {
+    console.log('In save user action', userData, token);
+    return dispatch => {
+      dispatch( saveUserStart() );
+      let url = 'https://react-netflix-de0a4-default-rtdb.europe-west1.firebasedatabase.app/users.json?auth=';
+      axios.post( url + token, userData )
+          .then( response => {
+              dispatch( saveUserSuccess( userData ) );
+          } )
+          .catch( error => {
+              dispatch( saveUserFail( error ) );
+          } );
+    };
+  };
+
+  export const fetchUserSuccess = ( user ) => {
+    return {
+        type: actionTypes.FETCH_USER_SUCCESS,
+        user: user
+    };
+  };
+  
+  export const fetchUserFail = ( error ) => {
+    return {
+        type: actionTypes.FETCH_USER_FAIL,
+        error: error
+    };
+  };
+  
+  export const fetchUserStart = () => {
+    return {
+        type: actionTypes.FETCH_USER_START
+    };
+  };
+  
+  export const fetchUser = (userId) => {
+    console.log('IN USER ACTIONS', userId);
+    return dispatch => {
+        dispatch(fetchUserStart());
+        let url = 'https://react-netflix-de0a4-default-rtdb.europe-west1.firebasedatabase.app/users.json';
+        const queryParams = '?orderBy="userId"&equalTo="' + userId + '"';
+        // axios.get( '/users.json' + queryParams)
+        axios.get( url + queryParams)
+            .then( res => {
+                console.log('RESP', res.data)
+                let fetchedUser;
+                for ( let key in res.data ) {
+                      fetchedUser = {
+                        ...res.data[key],
+                        // id: key
+                    }
+                }
+                dispatch(fetchUserSuccess(fetchedUser));
+            } )
+            .catch( err => {
+                dispatch(fetchUserFail(err));
+            } );
+    };
+  };

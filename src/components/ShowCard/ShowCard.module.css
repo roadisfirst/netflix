@@ -1,5 +1,6 @@
 .ShowCard {
   width: 250px;
+  height: 500px;
   padding: 16px;
   text-align: center;
   border: 1px solid #eee;
@@ -8,11 +9,14 @@
   box-sizing: border-box;
   cursor: pointer;
   border-radius: 0px;
+  background-color: white;
+  color: black;
 }
 
 .ShowCard:hover,
 .ShowCard:active {
-  background-color: #C0DDF5;
+  background-color: rgb(211, 22, 22);
+  color: white;
 }
 
 .Info img {

@@ -1,12 +1,14 @@
 import React, {Fragment} from "react";
 import { NavLink } from "react-router-dom";
 
+import classes from './Home.module.css';
+
 export const Home = () => {
   return (
-    <Fragment>
-      <h1>Home page</h1>
-      <div>Wellcome to our new application that changes reality</div>
+    <div className={classes.Home}>
+      <h1 className={classes.HomeHeader}>New Netflix</h1>
+      <p>Wellcome to our new application that changes reality</p>
       <NavLink to="/auth">Please login</NavLink>
-    </Fragment>
+    </div>
   )
 }

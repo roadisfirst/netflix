@@ -1,0 +1,40 @@
+.Navbar {
+  background-color: rgb(211, 22, 22);
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.NavbarLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display:flex;
+  flex-flow: row;
+  align-items: center;
+  height: 100%;
+}
+
+.NavbarLink {
+  margin: 10px;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+
+.NavbarLink a {
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  color: white;
+}
+
+.NavbarLink a:hover,
+.NavbarLink a:active,
+.NavbarLink a.active {
+  color: black;
+}
+

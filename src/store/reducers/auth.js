@@ -6,7 +6,8 @@ token: null,
 userId: null,
 error: null,
 loading: false,
-authRedirectPath: '/shows'
+authRedirectPath: '/shows',
+user: {},
 };
 
 const authStart = (state, action) => {
@@ -14,6 +15,7 @@ const authStart = (state, action) => {
 };
 
 const authSuccess = (state, action) => {
+    // console.log('STATE:', state, 'ACTION:', action)
     return updateObject(state, {
         token: action.idToken,
         userId: action.userId,
@@ -44,8 +46,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state, action)
-    default:
-        return state;
+        default:
+            return state;
     }
 };
 

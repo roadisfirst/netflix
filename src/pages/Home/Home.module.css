@@ -1,0 +1,11 @@
+.Home {
+  background-color: rgb(211, 22, 22);
+  color: white;
+  text-align: center;
+  height: 100vh;
+}
+
+.HomeHeader {
+  padding: 50px;
+  margin: 0 auto;
+}
