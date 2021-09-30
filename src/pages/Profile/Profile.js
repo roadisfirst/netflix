@@ -6,11 +6,9 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Profile.module.css';
 import * as actions from '../../store/actions/index';
 
-const Profile = ({match, dispatch, token, loading, user}) => {
+const Profile = ({match, dispatch, loading, user}) => {
   useEffect(() => {
     const { id } = match.params;
-    console.log('Check', id, user);
-
     dispatch(actions.fetchUser(id))
   }, [match, dispatch]);
 
@@ -49,8 +47,6 @@ const mapStateToProps = state => {
   return {
     user: state.user.user,
     loading: state.user.loading,
-    userId: state.auth.userId,
-    token: state.auth.token,
   };
 };
 

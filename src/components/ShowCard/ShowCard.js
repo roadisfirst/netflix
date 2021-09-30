@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Favorite from '../Favorite/Favorite';
 
 import classes from './ShowCard.module.css';
 
@@ -12,14 +11,12 @@ const showCard = (props) => {
         <NavLink to={props.clicked}>
             <article className={classes.ShowCard}>
                 <div className={classes.Info}>
-                <Favorite active={true}/>
                     <img src={props.img.medium} alt={props.name}/>
                     <h3>{props.name}</h3>
                     <p><b>Genres: </b>{genres}</p>
                     <p><b>Rating: </b>{props.rating?.average}</p>
                 </div>
             </article>
-            
         </NavLink>
     )
 };
