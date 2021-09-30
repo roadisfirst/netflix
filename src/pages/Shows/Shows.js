@@ -9,6 +9,7 @@ import * as actions from '../../store/actions/index';
 
 import classes from './Shows.module.css';
 
+
 const Shows = ({dispatch, loading, shows, hasErrors}) => {
     useEffect(() => {
         dispatch(actions.fetchShows())
@@ -51,15 +52,16 @@ const Shows = ({dispatch, loading, shows, hasErrors}) => {
         let valuesToFilter = q || filtering ? shows : currentShows;
 
         let searchedShows = search(valuesToFilter.map((show) =>
-            <ShowCard
-                key={show.id} 
-                name={show.name}
-                img={show.image}
-                rating={show.rating}
-                genres={show.genres}
-                type={show.type}
-                status={show.status}
-                clicked={`/shows/${show.id}`} />
+                <ShowCard
+                    key={show.id} 
+                    name={show.name}
+                    img={show.image}
+                    rating={show.rating}
+                    genres={show.genres}
+                    type={show.type}
+                    status={show.status}
+                    clicked={`/shows/${show.id}`}
+                />
         ));
         return filtering ? filter(searchedShows) : searchedShows;
     };

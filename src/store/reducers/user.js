@@ -4,6 +4,7 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
     user: {},
     loading: false,
+    userTableId: null
 };
 
 const saveUserStart = ( state, action ) => {
@@ -14,7 +15,8 @@ const saveUserSuccess = ( state, action ) => {
     // const newOrder = updateObject( action.userData, { id: action.userId } );
     return updateObject( state, {
         loading: false,
-        user: state.user
+        user: state.user,
+        userTableId: action.userTableId
     } );
 };
 
@@ -23,14 +25,16 @@ const saveUserFail = ( state, action ) => {
 };
 
 const fetchUserStart = ( state, action ) => {
+    console.log('Reducer fetchUsStart', action);
     return updateObject( state, { loading: true } );
 };
 
 const fetchUserSuccess = ( state, action ) => {
-    console.log('IN fetch reducer', action);
+    console.log('Reducer fetchUsSuxx', action);
     return updateObject( state, {
         user: action.user,
-        loading: false
+        loading: false,
+        userTableId: action.userTableId
     } );
 };
 

@@ -1,0 +1,14 @@
+.Profile {
+  text-align: center;
+}
+
+.CardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.CardsContainer a {
+  text-decoration: none;
+}

@@ -42,11 +42,11 @@ const Auth = props => {
   });
   const [isSignup, setIsSignup] = useState(true);
 
-  useEffect(() => {
-    if (props.authRedirectPath !== '/') {
-      props.onSetAuthRedirectPath();
-    }
-  }, []); // []
+  // useEffect(() => {
+  //   if (props.authRedirectPath !== '/') {
+  //     props.onSetAuthRedirectPath();
+  //   }
+  // }, []);
 
   const inputChangedHandler = (event, controlName) => {
     const updatedControls = updateObject(authForm, {
@@ -65,13 +65,11 @@ const Auth = props => {
   const submitHandler = event => {
     const userData = {
       email: authForm.email.value,
-      favouriteList: [],
-      friendsList: [],
+      favoriteList: null,
+      friendsList: null,
     }
     event.preventDefault();
     props.onAuth(authForm.email.value, authForm.password.value, isSignup, userData);
-
-    
   };
 
   const switchAuthModeHandler = () => {

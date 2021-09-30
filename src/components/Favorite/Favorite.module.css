@@ -1,0 +1,22 @@
+.Favorite {
+  background: #fff;
+  border: 1px solid #999;
+  color: #000;
+}
+
+.Favorite:disabled {
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #ccc;
+}
+
+.Unfavorite {
+  background: #fff;
+  border: 1px solid #ff8c68;
+  color: #dc0808;
+}
+
+.Unfavorite:disabled {
+  border: 1px solid #ffc0ad;
+  color: #ff8c68;
+}

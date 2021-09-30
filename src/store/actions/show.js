@@ -5,9 +5,9 @@ export const getShow = () => ({
     type: actionTypes.GET_SHOW
 })
 
-export const getShowSuccess = (Show) => ({
+export const getShowSuccess = (show) => ({
     type: actionTypes.GET_SHOW_SUCCESS,
-    payload: Show,
+    payload: show,
 })
 
 export const getShowFail = () => ({

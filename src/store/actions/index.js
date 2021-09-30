@@ -3,8 +3,6 @@ export {
   logout,
   setAuthRedirectPath,
   authCheckState,
-  saveUser,
-  fetchUser,
 } from './auth';
 export {
   fetchShows
@@ -13,6 +11,12 @@ export {
   fetchShow
 } from './show';
 export {
-  
-  fetchFavourite,
+  saveUser,
+  fetchUser,
 } from './user';
+export {
+  addToFavorite,
+  removeFromFavorite,
+  fetchFavorite,
+  updateFavorite,
+} from './favorite';

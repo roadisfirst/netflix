@@ -14,7 +14,7 @@ const App = props => {
   console.log('Props in app', props);
   useEffect(() => {
     props.onTryAutoSignup();
-  }, []);
+  }, [props]);
 
   let routes = (
       <BrowserRouter>
@@ -22,7 +22,7 @@ const App = props => {
           <Route path={'/'} exact component={Home} />
           <Route path={'/auth'} component={Auth} />
           <Route path={'/user/:id'} component={Profile} />
-          {/* <Redirect to="/" /> */}
+          <Redirect to="/" />
         </Switch>
       </BrowserRouter>
   );
@@ -30,16 +30,16 @@ const App = props => {
   if (props.isAuthenticated) {
     routes = (
       <BrowserRouter>
-      <Navbar user={props.user}/>
+      <Navbar userId={props?.userId}/>
         <Switch>
-          <Route path={'/'} exact component={Home} />
+          {/* <Route path={'/'} exact component={Home} /> */}
           <Route path={'/auth'} component={Auth} />
           <Route path={'/logout'} component={Logout} />
           <Route path={'/shows'} exact component={Shows} />
           <Route path={'/shows&page=:number'} exact component={Shows} />
           <Route path={'/shows/:id'} exact component={SingleShow} />
           <Route path={'/user/:id'} exact component={Profile} />
-          {/* <Redirect to="/" /> */}
+          <Redirect to="/shows" />
         </Switch>
       </BrowserRouter>
     );
@@ -55,7 +55,7 @@ const App = props => {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null,
-    user: state.user.user
+    userId: state.auth.userId,
   };
 };
 
