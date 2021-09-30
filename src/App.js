@@ -11,7 +11,6 @@ import { Navbar } from './components/Navbar/Navbar';
 import * as actions from './store/actions/index';
 
 const App = props => {
-  console.log('Props in app', props);
   useEffect(() => {
     props.onTryAutoSignup();
   }, [props]);

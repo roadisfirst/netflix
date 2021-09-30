@@ -7,11 +7,8 @@ const initialState = {
     error: false
 };
 
-const addToFavorite = (state, action) => { //check whats in state, maybe state.user.fav
-    console.log('IN add to fav reducer');
+const addToFavorite = (state, action) => {
     const newFavoriteList = state.favorite?.length ? [...state.favorite, action.show] : [action.show];
-    console.log('INPUT', state, action);
-    console.log('NEW arr', newFavoriteList);
     return updateObject(state, {
       loading: false,
       favorite: newFavoriteList
@@ -20,7 +17,6 @@ const addToFavorite = (state, action) => { //check whats in state, maybe state.u
 
 const removeFromFavorite = (state, action) => {
     const newFavoriteList = state.favorite.filter(elem => elem.id !== action.show.id);
-    console.log('WHAT UPDATE IN REDUCER', newFavoriteList)
     return updateObject(state, {
         loading: false,
         favorite: newFavoriteList

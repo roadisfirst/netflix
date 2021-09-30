@@ -40,7 +40,6 @@ export function fetchFavorite(userTableId) {
     dispatch(getFavoriteStart())
     axios.get( `/users/${userTableId}/favoriteList.json`)
       .then( res => {
-        console.log('check res', res.data);
           const favoriteList = res.data ? res.data : [];
           dispatch(getFavoriteSuccess(favoriteList));
       } )
@@ -51,7 +50,6 @@ export function fetchFavorite(userTableId) {
 };
 
 export const updateFavorite = (newFavoriteList, userTableId, token) => {
-  console.log('WHAT TO UPDATE', newFavoriteList);
   return dispatch => {
       dispatch(updateFavoriteStart());
       axios.put( `/users/${userTableId}/favoriteList.json?auth=${token}`, newFavoriteList)
