@@ -23,12 +23,10 @@ export const saveUserStart = () => {
 };
 
 export const saveUser = (userData, token) => {
-  console.log('In save user action', userData, token);
   return dispatch => {
     dispatch( saveUserStart() );
     axios.post( '/users.json?auth=' + token, userData )
         .then( response => {
-          console.log('RESPONSE', response);
             dispatch( saveUserSuccess( userData, response.data.name ) );
         } )
         .catch( error => {
@@ -38,7 +36,6 @@ export const saveUser = (userData, token) => {
 };
 
 export const fetchUserSuccess = (user, userTableId) => {
-  console.log('FETCH user suxess', user )
   return {
       type: actionTypes.FETCH_USER_SUCCESS,
       user: user,
@@ -66,7 +63,7 @@ export const fetchUser = (userId) => {
       axios.get( '/users.json' + queryParams)
         .then( res => {
             let fetchedUser, userTableId;
-            for ( let key in res.data ) {
+            for (let key in res.data) {
                   fetchedUser = {
                     ...res.data[key]
                   }
@@ -74,7 +71,7 @@ export const fetchUser = (userId) => {
             }
             dispatch(fetchUserSuccess(fetchedUser, userTableId));
         } )
-        .catch( err => {
+        .catch(err => {
             dispatch(fetchUserFail(err));
         } );
   };

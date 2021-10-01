@@ -18,9 +18,7 @@ export function fetchShows() {
   return async (dispatch) => {
     dispatch(getShows())
     try {
-      const response = await axios.get('https://api.tvmaze.com/shows')
-      console.log(response);
-
+      const response = await axios.get('/shows')
       dispatch(getShowsSuccess(response.data));
     } catch (error) {
       dispatch(getShowsFail());

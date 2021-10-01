@@ -54,7 +54,6 @@ export const updateFavorite = (newFavoriteList, userTableId, token) => {
       dispatch(updateFavoriteStart());
       axios.put( `/users/${userTableId}/favoriteList.json?auth=${token}`, newFavoriteList)
         .then(response => {
-          console.log(response);
           dispatch( updateFavoriteSuccess(response.data));
         })
         .catch(error => {

@@ -62,16 +62,13 @@ export const auth = (email, password, isSignup, data) => {
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 dispatch(checkAuthTimeout(response.data.expiresIn));
                 if (isSignup) {
-                    console.log('on new user')
                     const dataWithId = {...data, userId: response.data.localId}
-                    console.log('SAVING block', dataWithId)
                     dispatch(saveUser(dataWithId, response.data.idToken));
                 } else {
                     dispatch(fetchUser(response.data.localId));
                 }
             })
             .catch(err => {
-                console.log(err.response);
                 dispatch(authFail(err.response?.data?.error));
             });
     };

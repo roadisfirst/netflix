@@ -24,7 +24,8 @@
   width: 100%;
 }
 
-.NavbarLink a {
+.NavbarLink a,
+.NavbarBrandLink a {
   text-decoration: none;
   width: 100%;
   box-sizing: border-box;

@@ -4,6 +4,7 @@ import authReducer from './auth';
 import showsReducer from './shows';
 import showReducer from './show';
 import userReducer from './user';
+import usersReducer from './users';
 import favoriteReducer from './favorite';
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     shows: showsReducer,
     show: showReducer,
     user: userReducer,
+    users: usersReducer,
     favorite: favoriteReducer,
 })
 

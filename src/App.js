@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
 import Shows from './pages/Shows/Shows';
+import Users from './pages/Users/Users';
 import SingleShow from './pages/Shows/SingleShow/SingleShow';
 import Profile from './pages/Profile/Profile';
 import Auth from './pages/Auth/Auth';
@@ -38,6 +39,7 @@ const App = props => {
           <Route path={'/shows&page=:number'} exact component={Shows} />
           <Route path={'/shows/:id'} exact component={SingleShow} />
           <Route path={'/user/:id'} exact component={Profile} />
+          <Route path={'/users'} exact component={Users} />
           <Redirect to="/shows" />
         </Switch>
       </BrowserRouter>

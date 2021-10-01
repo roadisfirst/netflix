@@ -15,6 +15,9 @@ export {
   fetchUser,
 } from './user';
 export {
+  fetchUsers,
+} from './users';
+export {
   addToFavorite,
   removeFromFavorite,
   fetchFavorite,

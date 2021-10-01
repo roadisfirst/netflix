@@ -4,7 +4,8 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
     user: {},
     loading: false,
-    userTableId: null
+    userTableId: null,
+    error: false,
 };
 
 const saveUserStart = (state, action) => {
@@ -20,7 +21,10 @@ const saveUserSuccess = (state, action) => {
 };
 
 const saveUserFail = (state, action) => {
-    return updateObject(state, {loading: false});
+    return updateObject(state, {
+        loading: false,
+        error: true,
+    });
 };
 
 const fetchUserStart = (state, action) => {
@@ -36,7 +40,10 @@ const fetchUserSuccess = (state, action) => {
 };
 
 const fetchUserFail = (state, action) => {
-    return updateObject(state, {loading: false});
+    return updateObject(state, {
+        loading: false,
+        error: true,
+    });
 };
 
 const reducer = (state = initialState, action) => {

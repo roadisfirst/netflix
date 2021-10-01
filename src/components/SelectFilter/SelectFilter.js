@@ -5,8 +5,9 @@ const SelectFilter = (props) => {
   const valuesWithEmpty = ['', ...props.values];
   return (
     <div className={classes.SelectFilter}>
-        <label className={classes.Label}>{props.name}</label>
+        <div className={classes.Label}>{props.name}</div>
         <select
+          className={classes.Select}
             value={props.value}
             onChange={props.changed}>
             {valuesWithEmpty.map(option => (

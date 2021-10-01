@@ -21,7 +21,7 @@ const Shows = ({dispatch, loading, shows, hasErrors}) => {
     const [statusVal, setStatusVal] = useState('');
     const [typeVal, setTypeVal] = useState('');
     const [filtering, setFiltering] = useState(false);
-    // const [filteredShows, setFilteredShows] = useState(null);
+    const [filteredShows, setFilteredShows] = useState(null);
 
     const indexOfLastShow = currentPage * showsPerPage;
     const indexOfFirstShow = indexOfLastShow - showsPerPage;
@@ -33,27 +33,34 @@ const Shows = ({dispatch, loading, shows, hasErrors}) => {
     };
 
     const filter = (shows) => {
-        console.log('In filter', genreVal, statusVal, typeVal);
+        if (! shows || !shows.length){ 
+            return 'No shows match';
+        } else {
         return shows.filter(show => ( (genreVal ? show.props.genres.includes(genreVal) : true) &&
             (typeVal ? show.props.type === typeVal : true) && (statusVal ? show.props.status === statusVal : true)) && show)
+        }
+    }
+
+    const applyFilter = () => {
+        setFiltering(true);
+        setFilteredShows(filter(renderShows(shows)))
     }
 
     const clearFilter = () => {
         setFiltering(false);
-        // setFilteredShows(null);
+        setFilteredShows(null);
+        setQ('');
         setTypeVal('');
         setGenreVal('');
         setStatusVal('');
     }
 
-    const renderShows = () => {
+    const renderShows = (data) => {
         if (loading) return <Spinner />
         if (hasErrors) return <p>Unable to display Shows.</p>
-        let valuesToFilter = q || filtering ? shows : currentShows;
-
-        let searchedShows = search(valuesToFilter.map((show) =>
+        let searchedShows = search(data.map((show) =>
                 <ShowCard
-                    key={show.id} 
+                    key={show.id}
                     name={show.name}
                     img={show.image}
                     rating={show.rating}
@@ -63,18 +70,22 @@ const Shows = ({dispatch, loading, shows, hasErrors}) => {
                     clicked={`/shows/${show.id}`}
                 />
         ));
-        return filtering ? filter(searchedShows) : searchedShows;
+        return searchedShows.length ? searchedShows : 'No shows match';
+        
     };
 
     const getOptionsArray = (data, field) => {
         const allValuesArray = [];
-        data.map(item => typeof item[field] === 'string' ? allValuesArray.push(item[field]): allValuesArray.push(...item[field]));
+        data.map(item => typeof item[field] === 'string' ? allValuesArray.push(item[field]) :
+            allValuesArray.push(...item[field]));
         return [...new Set(allValuesArray)];
     }
 
     const genresOptions = getOptionsArray(shows, 'genres');
     const statusOptions = getOptionsArray(shows, 'status');
     const typeOptions = getOptionsArray(shows, 'type');
+    
+    const searchedShows = q ? shows : currentShows;
 
     return (
         <section className={classes.ShowsContainer}>
@@ -84,34 +95,36 @@ const Shows = ({dispatch, loading, shows, hasErrors}) => {
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 className={classes.ShowsSearchbar} />
-            <SelectFilter
-                value={genreVal}
-                name='Genres'
-                changed={(e) => setGenreVal(e.target.value)}
-                values={genresOptions} />
-            <SelectFilter
-                value={statusVal}
-                name='Status'
-                changed={(e) => setStatusVal(e.target.value)}
-                values={statusOptions} />
-            <SelectFilter
-                value={typeVal}
-                name='Type'
-                changed={(e) => setTypeVal(e.target.value)}
-                values={typeOptions} />
-            <button
-                onClick={() => setFiltering(true)}>
-                    Apply Filter</button>
-            <button
-                onClick={clearFilter}>
-                    Clear Filter</button>
+            <div className={classes.FilterBlock}>
+                <SelectFilter
+                    value={genreVal}
+                    name='Genres'
+                    changed={(e) => setGenreVal(e.target.value)}
+                    values={genresOptions} />
+                <SelectFilter
+                    value={statusVal}
+                    name='Status'
+                    changed={(e) => setStatusVal(e.target.value)}
+                    values={statusOptions} />
+                <SelectFilter
+                    value={typeVal}
+                    name='Type'
+                    changed={(e) => setTypeVal(e.target.value)}
+                    values={typeOptions} />
+                <button className={classes.FilterBlockButton} onClick={applyFilter}>
+                    Apply Filter
+                </button>
+                <button className={classes.FilterBlockButton} onClick={clearFilter}>
+                    Clear Filter
+                </button>
+            </div>
             <h2 className={classes.ShowsHeader}>Shows</h2>
+            {!q && !filtering && <Pagination
+                        postsPerPage={showsPerPage}
+                        totalPosts={shows.length}
+                        paginate={paginate} />}
             <div className={classes.CardsContainer}>
-                {renderShows()}
-                {!q && !filtering && <Pagination
-                    postsPerPage={showsPerPage}
-                    totalPosts={shows.length}
-                    paginate={paginate} />}
+                {filteredShows ? filteredShows : renderShows(searchedShows)}
             </div>
         </section>
     )
